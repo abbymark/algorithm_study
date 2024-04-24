@@ -1,0 +1,20 @@
+import sys
+
+c = int(sys.stdin.readline())
+for i in range(c):
+    n, l1, l2, s1, s2 = map(int, sys.stdin.readline().strip().split())
+    s1_pass = list(map(int, sys.stdin.readline().strip().split()))
+    s1_drible = list(map(int, sys.stdin.readline().strip().split()))
+
+    s2_pass = list(map(int, sys.stdin.readline().strip().split()))
+    s2_drible = list(map(int, sys.stdin.readline().strip().split()))
+
+    s1_min = l1
+    s2_min = l2
+
+    for k in range(n-1):
+        next_s1_min = min(s1_min + s1_drible[k], s2_min + s2_pass[k])
+        next_s2_min = min(s2_min + s2_drible[k], s1_min + s1_pass[k])
+        s1_min = next_s1_min
+        s2_min = next_s2_min
+    print(min(s1_min + s1, s2_min + s2))
